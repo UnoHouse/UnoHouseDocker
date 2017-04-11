@@ -1,5 +1,0 @@
-FROM memcached
-
-MAINTAINER mamf.pl
-
-EXPOSE 11211
