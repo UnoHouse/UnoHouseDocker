@@ -40,6 +40,9 @@ ENV APACHE_LOG_DIR /var/log/apache2
 RUN rm -f /etc/apache2/sites-enabled/*
 ADD vhost.conf /etc/apache2/sites-enabled
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 COPY apache2-foreground /usr/local/bin/
 RUN chmod 777 /usr/local/bin/apache2-foreground
 

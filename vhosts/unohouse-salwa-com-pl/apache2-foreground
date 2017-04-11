@@ -14,5 +14,4 @@ fi
 : "${APACHE_PID_FILE:=${APACHE_RUN_DIR:=/var/run/apache2}/apache2.pid}"
 rm -f "$APACHE_PID_FILE"
 
-/etc/init.d/memcached start
 exec apache2 -DFOREGROUND "$@"
