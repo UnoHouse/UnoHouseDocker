@@ -9,6 +9,7 @@ RUN apt-get update -y
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y \
+      curl \
       apache2 \
       php7.0 \
       php7.0-cli \
