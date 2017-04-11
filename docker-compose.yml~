@@ -1,0 +1,49 @@
+
+#unohouse.salwa.com.pl
+vhost-unohouse-salwa-com-pl:
+  build: ./vhosts/unohouse-salwa-com-pl
+  links:
+      - unohousedb:unohousedb
+  volumes:
+      - /var/www:/var/www
+  environment:
+    - VIRTUAL_HOST=unohouse.salwa.com.pl
+# ===
+
+#docs.unohouse.salwa.com.pl
+vhost-docs-unohouse-salwa-com-pl:
+  build: ./vhosts/docs-unohouse-salwa-com-pl
+  volumes:
+      - /var/www:/var/www
+  environment:
+    - VIRTUAL_HOST=docs.unohouse.salwa.com.pl
+# ===
+
+# MySQL
+unohousedb:
+  build: ./internal/unohousedb
+  ports:
+    - "3306:3306"
+  volumes:
+    - /var/mysql:/var/lib/mysql
+  environment:
+    MYSQL_USER: root
+    MYSQL_ROOT_PASSWORD: unohouse
+
+unomemcache:
+  build: ./internal/unohousememcached
+  ports:
+    - "127.0.0.1:11211:11211"
+
+# Proxy
+nginx-proxy:
+    build: ./internal/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+
+
