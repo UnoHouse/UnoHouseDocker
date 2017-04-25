@@ -1,5 +1,4 @@
-
-#unohouse.salwa.com.pl
+#195.181.209.40
 vhost-unohouse-salwa-com-pl:
   build: ./vhosts/unohouse-salwa-com-pl
   container_name: unohouse
@@ -9,17 +8,28 @@ vhost-unohouse-salwa-com-pl:
       - /var/www:/var/www
   environment:
     - VIRTUAL_HOST=195.181.209.40
+
+#unohouse.com.pl
+vhost-unohouse-salwa-com-pl:
+  build: ./vhosts/unohouse-com-pl
+  container_name: unohouse.com.pl
+  links:
+      - unohousedb:unohousedb
+  volumes:
+      - /var/www:/var/www
+  environment:
+    - VIRTUAL_HOST=unohouse.com.pl
 # ===
 
-#docs.unohouse.salwa.com.pl
-#vhost-docs-unohouse-salwa-com-pl:
-#  build: ./vhosts/docs-unohouse-salwa-com-pl
-#  container_name: unohouse-docs
-#  volumes:
-#      - /var/www:/var/www
-#  environment:
-#    - VIRTUAL_HOST=docs.unohouse.salwa.com.pl
-# ===
+#docs.unohouse.com.pl
+vhost-docs-unohouse-salwa-com-pl:
+  build: ./vhosts/docs-unohouse-com-pl
+  container_name: unohouse-docs
+  volumes:
+      - /var/www:/var/www
+  environment:
+    - VIRTUAL_HOST=docs.unohouse.com.pl
+#===
 
 # MySQL
 unohousedb:
