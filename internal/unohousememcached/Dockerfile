@@ -1,5 +1,5 @@
 FROM memcached
 
-MAINTAINER salwa.com.pl
+MAINTAINER unohouse.com.pl
 
 EXPOSE 11211

@@ -1,22 +1,22 @@
 
 #unohouse.salwa.com.pl
 vhost-unohouse-salwa-com-pl:
-  build: ./vhosts/unohouse-salwa-com-pl
+  build: ./vhosts/unohouse-com-pl
   links:
       - unohousedb:unohousedb
   volumes:
       - /var/www:/var/www
   environment:
-    - VIRTUAL_HOST=unohouse.salwa.com.pl
+    - VIRTUAL_HOST=unohouse.com.pl
 # ===
 
 #docs.unohouse.salwa.com.pl
 vhost-docs-unohouse-salwa-com-pl:
-  build: ./vhosts/docs-unohouse-salwa-com-pl
+  build: ./vhosts/docs-unohouse-com-pl
   volumes:
       - /var/www:/var/www
   environment:
-    - VIRTUAL_HOST=docs.unohouse.salwa.com.pl
+    - VIRTUAL_HOST=docs.unohouse.com.pl
 # ===
 
 # MySQL

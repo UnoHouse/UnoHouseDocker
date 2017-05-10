@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER salwa.com.pl
+MAINTAINER unohouse.com.pl
 
 # ADD REPOSITORIES
 RUN apt-get update -y
