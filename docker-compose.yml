@@ -1,5 +1,4 @@
-
-#unohouse.salwa.com.pl
+#unohouse.com.pl
 vhost-unohouse-salwa-com-pl:
   build: ./vhosts/unohouse-com-pl
   links:
@@ -10,13 +9,25 @@ vhost-unohouse-salwa-com-pl:
     - VIRTUAL_HOST=unohouse.com.pl
 # ===
 
-#docs.unohouse.salwa.com.pl
+#docs.unohouse.com.pl
 vhost-docs-unohouse-salwa-com-pl:
   build: ./vhosts/docs-unohouse-com-pl
   volumes:
       - /var/www:/var/www
   environment:
     - VIRTUAL_HOST=docs.unohouse.com.pl
+# ===
+
+#yui.unohouse.com.pl
+yui-unohouse-salwa-com-pl:
+  build: ./vhosts/yui-unohouse-com-pl
+  ports:
+      - "50000:50000"
+      - "8080:8080"
+  volumes:
+      - /var/jenkins_home
+  environment:
+      JAVA_OPTS: "-Djava.awt.headless=true"
 # ===
 
 # MySQL
