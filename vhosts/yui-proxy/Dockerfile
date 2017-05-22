@@ -9,10 +9,11 @@ RUN apt-get update -y
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y \
-      apache2
+    apache2 && \
+    libapache2-mod-proxy-html libxml2-dev
 
 # ENABLE MODULES
-RUN a2enmod rewrite expires headers deflate
+RUN a2enmod rewrite expires headers deflate proxy proxy_ajp proxy_http proxy_balancer proxy_connect proxy_html
 RUN service apache2 restart
 
 # APACHE
