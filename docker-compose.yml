@@ -6,6 +6,7 @@ vhost-unohouse-salwa-com-pl:
       - unohousedb:unohousedb
   volumes:
       - /var/www:/var/www
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   environment:
     - VIRTUAL_HOST=unohouse.com.pl
 # ===
@@ -16,6 +17,7 @@ vhost-docs-unohouse-salwa-com-pl:
   build: ./vhosts/docs-unohouse-com-pl
   volumes:
       - /var/www:/var/www
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   environment:
     - VIRTUAL_HOST=docs.unohouse.com.pl
 # ===
@@ -30,6 +32,7 @@ yui-unohouse-salwa-com-pl:
   volumes:
       - /var/jenkins_home
       - /var/www:/var/www
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   environment:
       JAVA_OPTS: "-Djava.awt.headless=true"
 # ===
@@ -40,6 +43,7 @@ yui-proxy-pass:
   container_name: yui-proxy
   volumes:
       - /var/www:/var/www
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   environment:
       - VIRTUAL_HOST=yui.unohouse.com.pl
 # ===
@@ -61,6 +65,8 @@ unomemcache:
   container_name: memcache
   ports:
     - "127.0.0.1:11211:11211"
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
 
 # Proxy
 nginx-proxy:
