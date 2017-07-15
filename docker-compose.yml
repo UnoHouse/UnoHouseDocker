@@ -82,7 +82,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "8080:80"
+      - "8181:80"
     links:
       - unohousedb
     environment:
