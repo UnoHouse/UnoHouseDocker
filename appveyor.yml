@@ -1,0 +1,6 @@
+image: Visual Studio 2017
+
+build_script:
+- docker images  # or your own docker command goes here
+
+test: off
