@@ -63,7 +63,7 @@ services:
     build: ./docker/unohousememcached
     container_name: memcache
     ports:
-      - "127.0.0.1:11211:11211"
+      - "11211:11211"
 
   # Proxy
   nginx-proxy:
