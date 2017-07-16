@@ -4,6 +4,7 @@ MAINTAINER unohouse.com.pl
 
 # ADD REPOSITORIES
 RUN apt-get update -y
+RUN apt-get install -qy supervisor curl git vim
 
 # INSTALL PHP 7 & Apache
 RUN apt-get update && \
@@ -25,6 +26,9 @@ RUN apt-get update && \
       php7.0-zip \
       php7.0-soap
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # ENABLE MODULES
 RUN a2enmod rewrite expires headers deflate
 RUN service apache2 restart
@@ -43,6 +47,6 @@ ADD vhost.conf /etc/apache2/sites-enabled
 COPY apache2-foreground /usr/local/bin/
 RUN chmod 777 /usr/local/bin/apache2-foreground
 
-EXPOSE 80 8080
+EXPOSE 80 443
 
 CMD ["/usr/local/bin/apache2-foreground"]

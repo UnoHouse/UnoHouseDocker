@@ -1,5 +1,5 @@
 FROM memcached
 
-MAINTAINER unohouse.com.pl
+MAINTAINER unohouse
 
 EXPOSE 11211
