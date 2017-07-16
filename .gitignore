@@ -1,1 +1,5 @@
 .idea/
+/logs/
+logs/
+www/
+!www/.gitkeep
