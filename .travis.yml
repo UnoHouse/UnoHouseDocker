@@ -12,11 +12,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - docker-compose -v
   - docker -v
-  # symfony application folder
-  - mkdir symfony
-  - cat docker-compose.yml
 
 script:
   - docker-compose build
-  - docker-compose up -d
+  - docker-compose up
   - docker-compose ps
