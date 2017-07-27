@@ -1,24 +1,16 @@
+version: 1.0.{build}-{branch}
 image: Visual Studio 2017
 
+init:
+  - git config --global core.eol lf
+  - git config --global core.autocrlf false
+  - ps: mkdir C:\downloads | Out-Null
+
 build_script:
-  - choco install docker-machine
-  - curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v1.9.1/boot2docker.iso
-  - docker-machine create --driver virtualbox default
-  - docker-machine env default
-  - choco install docker-compose
-  - docker-compose build
-  - docker-compose create
-  - docker-compose start
-  - yarn
-  - yarn bootstrap
+  - ps: .\appveyor-build.ps1
 
 test: off
 
-test_script:
-  - yarn test-unit
-  - docker-compose stop
-
 on_failure:
-  - yarn --version
   - docker version
   - docker-compose version
