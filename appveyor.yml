@@ -1,5 +1,10 @@
 image: Visual Studio 2017
 
+init:
+  - git config --global core.eol lf
+  - git config --global core.autocrlf false
+  - ps: mkdir C:\downloads | Out-Null
+
 install:
   - ps: |
       cd C:\downloads
