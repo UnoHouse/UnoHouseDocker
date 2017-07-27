@@ -1,7 +1,7 @@
 choco install chocolatey
 choco install -y docker -version 1.10.0
 choco install -y docker-compose -version 1.15.0
-choco install boot2docker
+choco install -y boot2docker
 
 docker version
 docker-compose version
