@@ -20,16 +20,7 @@ install:
 #  - ipconfig /all
 
 build_script:
-  - $version = "17.05.0-ce"
-  - $wc = New-Object net.webclient
-  - $wc.DownloadFile("https://get.docker.com/builds/Windows/x86_64/docker-$version.zip", "$env:TEMP\docker.zip")
-  - Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles -Force
-  - Remove-Item "$env:TEMP\docker.zip"
-  - Start-Service docker
-
-  - docker-compose start
-  - yarn
-  - yarn bootstrap
+  - ps: .\appveyor-build.ps1
 
 test: off
 
