@@ -10,11 +10,10 @@ environment:
   DOCKER_VERSION: 1.10.0
   DOCKER_MACHINE_VERSION: 0.4.1
 build_script:
-- cmd: >-
-    choco install -yr cygwin > nul
-    choco install -yr jq
-    choco install -yr docker -version %DOCKER_VERSION%
-    choco install -yr docker-machine -version %DOCKER_MACHINE_VERSION%
+  - choco install -yr cygwin > nul
+  - choco install -yr jq
+  - choco install -yr docker -version %DOCKER_VERSION%
+  - choco install -yr docker-machine -version %DOCKER_MACHINE_VERSION%
 
 
 test: off
