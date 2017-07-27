@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 1.0.{build}-{branch}
 image: Visual Studio 2017
 
 init:
@@ -6,29 +6,19 @@ init:
   - git config --global core.autocrlf false
   - ps: mkdir C:\downloads | Out-Null
 
-install:
-#  - ps: |
-#      cd C:\downloads
-#      Start-FileDownload "http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe"
-#      Start-FileDownload "http://download.virtualbox.org/virtualbox/5.1.6/Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack"
-#      Start-Process -FilePath "VirtualBox-5.1.6-110634-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox" -Wait
-#      cd $env:APPVEYOR_BUILD_FOLDER
-#  - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
-#  - VBoxManage extpack install C:\downloads\Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack
-#  - VBoxManage -v
-#  - ssh -V
-#  - ipconfig /all
-
+environment:
+  DOCKER_VERSION: 1.10.0
+  DOCKER_MACHINE_VERSION: 0.4.1
 build_script:
-  - ps: .\appveyor-build.ps1
+- cmd: >-
+    choco install -yr cygwin > nul
+    choco install -yr jq
+    choco install -yr docker -version %DOCKER_VERSION%
+    choco install -yr docker-machine -version %DOCKER_MACHINE_VERSION%
+
 
 test: off
 
-test_script:
-  - yarn test-unit
-  - docker-compose stop
-
 on_failure:
-  - yarn --version
   - docker version
   - docker-compose version
