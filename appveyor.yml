@@ -1,3 +1,4 @@
+version: 1.0.{build}
 image: Visual Studio 2017
 
 init:
@@ -19,16 +20,13 @@ install:
 #  - ipconfig /all
 
 build_script:
-  - choco install docker
-  - choco install docker-machine
-  - choco install docker-compose
-#  - docker-machine create --driver virtualbox default
-#  - docker-machine env default
+  - $version = "17.05.0-ce"
+  - $wc = New-Object net.webclient
+  - $wc.DownloadFile("https://get.docker.com/builds/Windows/x86_64/docker-$version.zip", "$env:TEMP\docker.zip")
+  - Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles -Force
+  - Remove-Item "$env:TEMP\docker.zip"
+  - Start-Service docker
 
-  - choco install docker-compose --force
-  - choco install docker-compose --update
-  - docker-compose build
-#  - docker-compose create
   - docker-compose start
   - yarn
   - yarn bootstrap
