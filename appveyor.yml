@@ -1,8 +1,23 @@
 image: Visual Studio 2017
 
 build_script:
-- docker images  # or your own docker command goes here
-- docker-compose build
-- docker-compose up -d
+  - choco install docker-machine
+  - docker-machine create -d hyperv default
+  - docker-machine env default
+  - choco install docker-compose
+  - docker-compose build
+  - docker-compose create
+  - docker-compose start
+  - yarn
+  - yarn bootstrap
 
 test: off
+
+test_script:
+  - yarn test-unit
+  - docker-compose stop
+
+on_failure:
+  - yarn --version
+  - docker version
+  - docker-compose version
