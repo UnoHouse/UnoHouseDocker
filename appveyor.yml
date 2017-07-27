@@ -20,7 +20,6 @@ install:
 
 build_script:
   - choco install docker-machine
-  - VBoxManage extpack install C:\downloads\Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack
   - VBoxManage -v
   - docker-machine create --driver virtualbox default
   - docker-machine env default
