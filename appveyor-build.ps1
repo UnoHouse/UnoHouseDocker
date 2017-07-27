@@ -6,6 +6,8 @@ Write-Host Updating base images
 docker pull microsoft/nanoserver
 
 docker version
+choco install docker-compose
+choco upgrade docker-compose
 Write-Host Updating Docker engine to master
 #Stop-Service docker
 Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.15.0/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
