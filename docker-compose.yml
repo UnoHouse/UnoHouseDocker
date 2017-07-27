@@ -6,8 +6,6 @@ services:
     container_name: app
     links:
       - unohousedb:unohousedb
-    depends_on:
-      - unohousedb
     volumes:
       - ./www:/var/www
     environment:
@@ -67,8 +65,6 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: pma
     links:
-      - unohousedb
-    depends_on:
       - unohousedb
     environment:
       - PMA_HOSTS=unohousedb
