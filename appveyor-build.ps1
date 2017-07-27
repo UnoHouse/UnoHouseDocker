@@ -7,7 +7,7 @@ docker pull microsoft/nanoserver
 
 docker version
 Write-Host Updating Docker engine to master
-Stop-Service docker
+#Stop-Service docker
 $version = "17.05.0-ce"
 $wc = New-Object net.webclient
 $wc.DownloadFile("https://get.docker.com/builds/Windows/x86_64/docker-$version.zip", "$env:TEMP\docker.zip")
