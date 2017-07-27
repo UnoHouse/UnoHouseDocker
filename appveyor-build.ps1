@@ -16,6 +16,6 @@ Remove-Item "$env:TEMP\docker.zip"
 Start-Service docker
 docker version
 
-docker build -t whoami -f Dockerfile.windows .
+docker build -t whoami -f Dockerfile .
 
 docker images
