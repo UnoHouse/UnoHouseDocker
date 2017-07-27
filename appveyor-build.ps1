@@ -6,6 +6,7 @@ choco install -y docker-compose -version 1.15.0
 docker version
 docker-compose version
 
-#docker-compose build
-#docker-compose up -d
-#docker images
+docker-compose build
+docker-compose up -d
+docker images
+docker ps
