@@ -8,6 +8,7 @@ init:
 
 build_script:
   - ps: .\appveyor-build.ps1
+
 test: off
 
 on_failure:
