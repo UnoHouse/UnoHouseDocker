@@ -16,6 +16,7 @@ before_install:
 
 script:
   - sudo docker-compose build
+  - sudo docker-compose ps
   - sudo service mysql stop
   - sudo service memcache stop
   - while sudo lsof -Pi :3306 -sTCP:LISTEN -t; do sleep 1; done
