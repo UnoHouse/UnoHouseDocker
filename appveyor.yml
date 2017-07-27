@@ -6,26 +6,27 @@ init:
   - ps: mkdir C:\downloads | Out-Null
 
 install:
-  - ps: |
-      cd C:\downloads
-      Start-FileDownload "http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe"
-      Start-FileDownload "http://download.virtualbox.org/virtualbox/5.1.6/Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack"
-      Start-Process -FilePath "VirtualBox-5.1.6-110634-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox" -Wait
-      cd $env:APPVEYOR_BUILD_FOLDER
-  - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
-  - VBoxManage extpack install C:\downloads\Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack
-  - VBoxManage -v
-  - ssh -V
-  - ipconfig /all
+#  - ps: |
+#      cd C:\downloads
+#      Start-FileDownload "http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe"
+#      Start-FileDownload "http://download.virtualbox.org/virtualbox/5.1.6/Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack"
+#      Start-Process -FilePath "VirtualBox-5.1.6-110634-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox" -Wait
+#      cd $env:APPVEYOR_BUILD_FOLDER
+#  - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
+#  - VBoxManage extpack install C:\downloads\Oracle_VM_VirtualBox_Extension_Pack-5.1.6-110634.vbox-extpack
+#  - VBoxManage -v
+#  - ssh -V
+#  - ipconfig /all
 
 build_script:
+  - choco install docker
   - choco install docker-machine
-  - VBoxManage -v
-  - docker-machine create --driver virtualbox default
-  - docker-machine env default
+  - choco install docker-compose
+#  - docker-machine create --driver virtualbox default
+#  - docker-machine env default
   - choco install docker-compose
   - docker-compose build
-  - docker-compose create
+#  - docker-compose create
   - docker-compose start
   - yarn
   - yarn bootstrap
