@@ -24,7 +24,9 @@ build_script:
   - choco install docker-compose
 #  - docker-machine create --driver virtualbox default
 #  - docker-machine env default
-  - choco install docker-compose
+
+  - choco install docker-compose --force
+  - choco install docker-compose --update
   - docker-compose build
 #  - docker-compose create
   - docker-compose start
