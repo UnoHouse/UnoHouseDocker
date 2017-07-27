@@ -40,3 +40,13 @@ jobs:
           command: |
             set -x
             docker-compose build
+      - run:
+          name: Run Docker containers
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
+          name: List Docker containers
+          command: |
+            set -x
+            docker ps
