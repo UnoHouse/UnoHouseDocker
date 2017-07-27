@@ -14,6 +14,7 @@ $wc.DownloadFile("https://get.docker.com/builds/Windows/x86_64/docker-$version.z
 Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles -Force
 Remove-Item "$env:TEMP\docker.zip"
 Start-Service docker
+Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.15.0/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
 docker version
 
 docker-compose build
