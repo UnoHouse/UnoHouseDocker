@@ -16,6 +16,6 @@ Remove-Item "$env:TEMP\docker.zip"
 Start-Service docker
 docker version
 
-docker build -t whoami -f Dockerfile .
+docker-compose build
 
 docker images
