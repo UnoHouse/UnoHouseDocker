@@ -22,10 +22,10 @@ services:
       - VIRTUAL_HOST=docs.unohouse.com.pl
   # ===
 
-  #yui Jenkins
+  #jenkins Jenkins
   yui-unohouse-salwa-com-pl:
-    build: ./vhosts/yui
-    container_name: yui
+    build: ./vhosts/jenkins
+    container_name: jenkins
     ports:
         - "50000:50000"
         - "8080:8080"
@@ -37,15 +37,15 @@ services:
         JAVA_OPTS: "-Djava.awt.headless=true"
   # ===
 
-  #yui.unohouse.com.pl
+  #jenkins.unohouse.com.pl
   yui-proxy-pass:
     build: ./vhosts/yui-proxy
-    container_name: yui-proxy
+    container_name: jenkins-proxy
     volumes:
         - /var/www:/var/www
         - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-        - VIRTUAL_HOST=yui.unohouse.com.pl
+        - VIRTUAL_HOST=jenkins.unohouse.com.pl
   # ===
 
   # MySQL
